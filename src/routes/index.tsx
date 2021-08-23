@@ -1,12 +1,15 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
-import Main from "../pages/main/Main";
+import { Switch } from "react-router-dom";
+import Authors from "../pages/authors/Authors";
+import Posts from "../pages/posts/Posts";
+import LayoutRoute from "./LayoutRoute";
 
 export default function Routes() {
 
   return (
     <Switch>
-      <Route exact path={"/"} component={Main} />
+      <LayoutRoute exact path={"/"} component={Posts} />
+      <LayoutRoute exact path={"/autores"} component={Authors} />
     </Switch>
   );
 }
