@@ -39,7 +39,7 @@ interface IUsePosts {
 }
 
 export const UsePosts = (): IUsePosts => {
-  const { filteredPosts, refreshPosts, authors } = useBlogContext();
+  const { filteredPosts, refreshPosts, authors, refreshAuthors } = useBlogContext();
   const { addPost, removePost } = PostsApi();
   const { setLoading } = useUi();
   const [openAddPost, setOpenAddPost] = useState(false);
@@ -81,6 +81,7 @@ export const UsePosts = (): IUsePosts => {
       try {
         await addPost(author, { body, title });
         refreshPosts();
+        refreshAuthors();
       } catch (error) {
         console.error(error);
       } finally {

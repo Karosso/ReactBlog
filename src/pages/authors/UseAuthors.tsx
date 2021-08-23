@@ -27,7 +27,7 @@ interface IUseAuthors {
 export const UseAuthors = (): IUseAuthors => {
   const { setLoading } = useUi();
   const { removeAuthor, addAuthor } = AuthorsApi();
-  const { filteredAuthors, refreshAuthors } = useBlogContext();
+  const { filteredAuthors, refreshAuthors, refreshPosts } = useBlogContext();
   const [openAddAuthor, setOpenAddAuthor] = useState(false);
   const [name, setName] = useState<string>();
   const [nickname, setNickname] = useState<string>();
@@ -83,6 +83,7 @@ export const UseAuthors = (): IUseAuthors => {
       try {
         await removeAuthor(deleteAuthorId);
         refreshAuthors();
+        refreshPosts();
       } catch (error) {
         console.error(error);
       } finally {
